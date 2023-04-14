@@ -1,7 +1,9 @@
 <html>
+
 <head>
-<title>Run my Python files</title>
-<?PHP
-echo shell_exec("python test.py 'parameter1'");
-?>
+    <title>Run my Python files</title>
+    <?php
+    $output = shell_exec('py --version');
+    echo "<pre>$output</pre>";
+    ?>
 </head>
