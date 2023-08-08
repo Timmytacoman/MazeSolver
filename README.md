@@ -1,1 +1,1 @@
-A repository to implement an effective and intuitive maze solver using various algorithms.
+A repository to implement an interactive, effective and intuitive maze solver using various algorithms.
