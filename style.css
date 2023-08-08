@@ -1,14 +1,11 @@
-td {
+/* td {
   border: 10px solid rgb(0, 0, 0);
-}
+} */
 
-button {
-  width: 175px;
-  height: 175px;
-  border-radius: 100px;
-  background-color: rgb(107, 226, 133);
-}
-
-#test {
+#goButton {
+    width: 175px;
+    height: 175px;
+    border-radius: 100px;
+    background-color: rgb(107, 226, 133);
   font-size: 25px;
 }
