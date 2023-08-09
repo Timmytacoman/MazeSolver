@@ -9,3 +9,17 @@
     background-color: rgb(107, 226, 133);
   font-size: 25px;
 }
+
+
+body {
+  background-color: darkgray;
+}
+
+
+
+td {
+  /* border: 1px solid black; */
+  width: 75px;
+  height: 75px;
+  background-color: #96D4D4;
+}
