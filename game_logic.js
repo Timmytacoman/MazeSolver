@@ -11,8 +11,7 @@ for (let i = 0; i < n; i++) {
   tiles.push(row);
 }
 console.log(tiles);
-console.log("initial ^")
-
+console.log("initial ^");
 
 function tableCreate() {
   const body = document.body;
@@ -24,7 +23,6 @@ function tableCreate() {
     for (let j = 0; j < m; j++) {
       const td = tr.insertCell();
       td.id = i + "," + j;
-      td.isWall = false;
       td.addEventListener("mouseover", tileEnterEvent);
       td.addEventListener("mousedown", tileClickEvent);
     }
@@ -32,27 +30,37 @@ function tableCreate() {
   body.appendChild(tbl);
 }
 
+function handleCell(event) {
+  // scrape location data
+  row = event.srcElement.id[0];
+  col = event.srcElement.id[2];
+  // console.log(row, col);
+
+  // pencil
+  if (drawType == 0) {
+    // change color
+    event.srcElement.style.backgroundColor = "black";
+    // update grid value to wall
+    tiles[row][col] = "1";
+
+    // eraser
+  } else if (drawType == 1) {
+    // change color
+    event.srcElement.style.backgroundColor = "#96d4d4";
+    // update grid value to non wall
+    tiles[row][col] = "0";
+  }
+}
+
 function tileEnterEvent(event) {
   // console.log(event);
   if (event.buttons == 1) {
-    // pencil
-    if (drawType == 0) {
-      event.srcElement.style.backgroundColor = "black";
-      // eraser
-    } else if (drawType == 1) {
-      event.srcElement.style.backgroundColor = "#96d4d4";
-    }
+    handleCell(event);
   }
 }
 
 function tileClickEvent(event) {
-  // pencil
-  if (drawType == 0) {
-    event.srcElement.style.backgroundColor = "black";
-    // eraser
-  } else if (drawType == 1) {
-    event.srcElement.style.backgroundColor = "#96d4d4";
-  }
+  handleCell(event);
 }
 
 function selectPencil() {
