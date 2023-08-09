@@ -1,17 +1,21 @@
-// 0: draw, 1: erase
+// 0: draw
+// 1: erase
+// 2: start
+// 3: end
 let drawType = 0;
 // width and height of grid
-let n = 10;
-let m = 10;
+let n = 7;
+let m = 7;
 
 // construct grid
 let tiles = Array();
 for (let i = 0; i < n; i++) {
-  let row = Array.from("0".repeat(m));
+  let row = Array(m).fill(0);
   tiles.push(row);
 }
-console.log(tiles);
-console.log("initial ^");
+
+// console.log(tiles);
+// console.log("initial ^");
 
 function tableCreate() {
   const body = document.body;
@@ -41,14 +45,14 @@ function handleCell(event) {
     // change color
     event.srcElement.style.backgroundColor = "black";
     // update grid value to wall
-    tiles[row][col] = "1";
+    tiles[row][col] = 1;
 
     // eraser
   } else if (drawType == 1) {
     // change color
     event.srcElement.style.backgroundColor = "#96d4d4";
     // update grid value to non wall
-    tiles[row][col] = "0";
+    tiles[row][col] = 0;
   }
 }
 
@@ -98,11 +102,35 @@ function getGridArray() {
   // grid is <table id="grid">
   console.log(document.getElementById("grid"));
   console.log(tiles);
+  breadthFirstSearch();
+}
+
+
+function breadthFirstSearch() {
+  console.log("starting BFS");
+  test();
 }
 
 tableCreate();
 registerListeners();
 
+// temp insert start and end positions
+// 2 -> start
+// 3-> end
+tiles[3][0] = 2;
+tiles[6][5] = 3;
+let start = document.getElementById("3,0");
+start.style.backgroundColor = "rgb(255, 255, 0)";
+
+let end = document.getElementById("6,5");
+end.style.backgroundColor = "rgb(255, 111, 0)";
+
 // let test = document.getElementById("0,0");
 // console.log(test.isWall);
 // console.log(document.getElementById("grid"));
+
+
+
+
+
+
