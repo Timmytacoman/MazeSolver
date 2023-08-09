@@ -1,3 +1,6 @@
+// 0: draw, 1: erase
+let drawType = 0;
+
 function tableCreate() {
   const body = document.body;
   const tbl = document.createElement("table");
@@ -14,23 +17,45 @@ function tableCreate() {
   body.appendChild(tbl);
 }
 
-
 function tileEnterEvent(event) {
-  console.log(event);
-  if(event.buttons == 1) {
-    // console.log("left click detected!")
-    // console.log(event.srcElement)
-    event.srcElement.style.backgroundColor = "black";
-  }
-
-  else if (event.altKey) {
-    event.srcElement.style.backgroundColor = "#96D4D4";
+  // console.log(event);
+  if (event.buttons == 1) {
+    // pencil
+    if (drawType == 0) {
+      event.srcElement.style.backgroundColor = "black";
+    // eraser
+    } else if (drawType == 1) {
+      event.srcElement.style.backgroundColor = "#96d4d4";
+    }
   }
 }
 
-function tileClickEvent() {
-  console.log("hi");
+function tileClickEvent(event) {
+    // pencil
+    if (drawType == 0) {
+      event.srcElement.style.backgroundColor = "black";
+    // eraser
+    } else if (drawType == 1) {
+      event.srcElement.style.backgroundColor = "#96d4d4";
+    }}
+
+function selectPencil() {
+  drawType = 0;
 }
 
+function selectEraser() {
+  drawType = 1;
+}
+
+function registerListeners() {
+  console.log("here");
+  // register pencil
+  const pencil = document.getElementById("pencil");
+  pencil.addEventListener("click", selectPencil);
+  // register eraser
+  const eraser = document.getElementById("eraser");
+  eraser.addEventListener("click", selectEraser);
+}
 
 tableCreate();
+registerListeners();
