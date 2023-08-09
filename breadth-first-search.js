@@ -40,44 +40,53 @@ function bfs(tiles, start) {
     let surrounding = [left, top, right, bottom];
     console.log(surrounding);
 
-    for(let i = 0; i < surrounding.length; i++) {
-        let currentTile = surrounding[i];
-        console.log(currentTile);
-        let row = currentTile[0];
-        let col = currentTile[1];
-        console.log(row, col);
-        // determine if currentTile is within boundaries
-        if (row >= 0 && row < m && col >= 0 && col < n) {
-            console.log("in bounds");
-            // determine if currentTile has already been visited
-            let value = row + "," + col;
+    for (let i = 0; i < surrounding.length; i++) {
+      let currentTile = surrounding[i];
+      console.log(currentTile);
+      let row = currentTile[0];
+      let col = currentTile[1];
+      console.log(row, col);
+
+      // determine if currentTile is within boundaries
+      if (row >= 0 && row < n && col >= 0 && col < m) {
+        console.log("in bounds");
+
+        // check if tile is target
+        if (tiles[row][col] == 3) {
+          console.log("found it!");
+          return;
+        }
+
+        // determine if currentTile has already been visited
+        let value = row + "," + col;
+        console.log(value);
+        if (!visited.includes(value)) {
+          console.log("not yet visited");
+          // determine if currentTile is at the wall
+          if (tiles[row][col] == 0) {
+            console.log("not at a wall");
+
+            // valid search location
+            // add to queue
+            queue.push(value);
+            // add to visited
+            visited.push(value);
+            // change color of tile
+            // get the tile
             console.log(value);
-            if (!visited.includes(value)) {
-                console.log("not yet visited");
-                // valid search location
-                // add to queue
-                queue.push(value);
-                // add to visited
-                visited.push(value);
-                // change color of tile
-                // get the tile
-                console.log(value);
-                console.log("see above");
-                displayTile = document.getElementById(value);
-                displayTile.style.backgroundColor = "white";
-
-            } else {
-                console.log("already visited!");
-            }
-
-            
+            console.log("see above");
+            displayTile = document.getElementById(value);
+            displayTile.style.backgroundColor = "white";
+          } else {
+            console.log("at a wall");
+          }
+        } else {
+          console.log("already visited!");
         }
-        else {
-            console.log("outside of bounds");
-        }
-
+      } else {
+        console.log("outside of bounds");
+      }
     }
-
 
     // console.log(directions);
   }
