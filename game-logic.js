@@ -36,8 +36,13 @@ function tableCreate() {
 
 function handleCell(event) {
   // scrape location data
-  row = event.srcElement.id[0];
-  col = event.srcElement.id[2];
+  // row = event.srcElement.id[0];
+  let entire = event.srcElement.id;
+  const splitted = entire.split(",");
+  // console.log(splitted);
+  let row = splitted[0];
+  let col = splitted[1];
+  // col = event.srcElement.id[2];
   // console.log(row, col);
 
   // pencil
@@ -95,20 +100,19 @@ function registerListeners() {
   eraser.addEventListener("click", selectEraser);
   // register solve buttons
   const solve = document.getElementById("solve");
-  solve.addEventListener("click", getGridArray);
+  solve.addEventListener("click", breadthFirstSearch);
 }
 
-function getGridArray() {
-  // grid is <table id="grid">
-  console.log(document.getElementById("grid"));
-  console.log(tiles);
-  breadthFirstSearch();
-}
-
+// function getGridArray() {
+//   // grid is <table id="grid">
+//   // console.log(document.getElementById("grid"));
+//   // console.log(tiles);
+//   breadthFirstSearch();
+// }
 
 function breadthFirstSearch() {
-  console.log("starting BFS");
-  test();
+  // imported from breadth-first-search.js
+  bfs(tiles, start);
 }
 
 tableCreate();
@@ -128,9 +132,4 @@ end.style.backgroundColor = "rgb(255, 111, 0)";
 // let test = document.getElementById("0,0");
 // console.log(test.isWall);
 // console.log(document.getElementById("grid"));
-
-
-
-
-
 
