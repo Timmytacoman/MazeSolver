@@ -10,7 +10,7 @@ function tableCreate() {
     for (let j = 0; j < 10; j++) {
       const td = tr.insertCell();
       td.id = i + "," + j;
-      td.addEventListener("mouseenter", tileEnterEvent);
+      td.addEventListener("mouseover", tileEnterEvent);
       td.addEventListener("click", tileClickEvent);
     }
   }
@@ -41,10 +41,20 @@ function tileClickEvent(event) {
 
 function selectPencil() {
   drawType = 0;
+  // find drawing buttons
+  var pencilButton = document.getElementById("pencil");
+  var eraserButton = document.getElementById("eraser");
+  pencilButton.style.fontWeight = "bold";
+  eraserButton.style.fontWeight = "normal";
 }
 
 function selectEraser() {
   drawType = 1;
+    // find drawing buttons
+    var pencilButton = document.getElementById("pencil");
+    var eraserButton = document.getElementById("eraser");
+    pencilButton.style.fontWeight = "normal";
+    eraserButton.style.fontWeight = "bold";
 }
 
 function registerListeners() {
