@@ -20,7 +20,7 @@ async function bfs(tiles, start) {
   // while the queue is not empty
   while (queue.length != 0) {
 
-    await new Promise(resolve => setTimeout(resolve, 10));
+    await new Promise(resolve => setTimeout(resolve, 4));
 
 
     console.log("here");
@@ -55,7 +55,7 @@ async function bfs(tiles, start) {
       console.log(row, col);
 
       // determine if currentTile is within boundaries
-      if (row >= 0 && row < n && col >= 0 && col < m) {
+      if (row >= 0 && row < m && col >= 0 && col < n) {
         console.log("in bounds");
 
         // check if tile is target

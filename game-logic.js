@@ -4,13 +4,13 @@
 // 3: end
 let drawType = 0;
 // width and height of grid
-let n = 22;
-let m = 22;
+let m = 44;
+let n = 88;
 
 // construct grid
 let tiles = Array();
-for (let i = 0; i < n; i++) {
-  let row = Array(m).fill(0);
+for (let i = 0; i < m; i++) {
+  let row = Array(n).fill(0);
   tiles.push(row);
 }
 
@@ -22,9 +22,9 @@ function tableCreate() {
   const tbl = document.createElement("table");
   tbl.id = "grid";
 
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i < m; i++) {
     const tr = tbl.insertRow();
-    for (let j = 0; j < m; j++) {
+    for (let j = 0; j < n; j++) {
       const td = tr.insertCell();
       td.id = i + "," + j;
       td.addEventListener("mouseover", tileEnterEvent);
@@ -122,11 +122,11 @@ registerListeners();
 // 2 -> start
 // 3-> end
 tiles[4][1] = 2;
-tiles[13][12] = 3;
+tiles[42][63] = 3;
 let start = document.getElementById("4,1");
 start.style.backgroundColor = "rgb(255, 255, 0)";
 
-let end = document.getElementById("13,12");
+let end = document.getElementById("42,63");
 end.style.backgroundColor = "rgb(255, 111, 0)";
 
 // let test = document.getElementById("0,0");
