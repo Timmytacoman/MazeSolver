@@ -4,7 +4,10 @@
 //   var i = queue.shift(); // queue is now [5]
 //   alert(i);              // displays 2
 
-function bfs(tiles, start) {
+
+
+
+async function bfs(tiles, start) {
   console.log("starting BFS");
   console.log(tiles);
   // we have access to grid here
@@ -16,6 +19,10 @@ function bfs(tiles, start) {
 
   // while the queue is not empty
   while (queue.length != 0) {
+
+    await new Promise(resolve => setTimeout(resolve, 10));
+
+
     console.log("here");
     console.log(queue);
     console.log("visited");

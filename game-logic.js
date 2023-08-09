@@ -4,8 +4,8 @@
 // 3: end
 let drawType = 0;
 // width and height of grid
-let n = 15;
-let m = 15;
+let n = 22;
+let m = 22;
 
 // construct grid
 let tiles = Array();
