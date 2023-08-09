@@ -4,8 +4,13 @@
 // 3: end
 let drawType = 0;
 // width and height of grid
-let m = 44;
-let n = 88;
+let m = 22;
+let n = 44;
+
+let startRow = 4;
+let startCol = 4;
+let endRow = 15;
+let endCol = 40;
 
 // construct grid
 let tiles = Array();
@@ -121,12 +126,15 @@ registerListeners();
 // temp insert start and end positions
 // 2 -> start
 // 3-> end
-tiles[4][1] = 2;
-tiles[42][63] = 3;
-let start = document.getElementById("4,1");
+
+
+
+tiles[startRow][startCol] = 2;
+tiles[endRow][endCol] = 3;
+let start = document.getElementById(startRow + "," + startCol);
 start.style.backgroundColor = "rgb(255, 255, 0)";
 
-let end = document.getElementById("42,63");
+let end = document.getElementById(endRow + "," + endCol);
 end.style.backgroundColor = "rgb(255, 111, 0)";
 
 // let test = document.getElementById("0,0");
