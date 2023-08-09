@@ -7,24 +7,15 @@ function tableCreate() {
     for (let j = 0; j < 10; j++) {
       const td = tr.insertCell();
       td.id = i + "," + j;
-      td.addEventListener("mouseenter", clickMethod);
-      // td.addEventListener("click", (event) => {
-        // td.textContent = `Click count: ${event.detail}`;
-        // console.log(event.altKey)
-        // if (event.altKey) {
-        //   td.style.backgroundColor = "black";
-        // }
-        // else {
-        //   td.style.backgroundColor = "#96D4D4"
-        // }
-      // });
+      td.addEventListener("mouseenter", tileEnterEvent);
+      td.addEventListener("click", tileClickEvent);
     }
   }
   body.appendChild(tbl);
 }
 
 
-function clickMethod(event) {
+function tileEnterEvent(event) {
   console.log(event);
   if(event.buttons == 1) {
     // console.log("left click detected!")
@@ -35,6 +26,10 @@ function clickMethod(event) {
   else if (event.altKey) {
     event.srcElement.style.backgroundColor = "#96D4D4";
   }
+}
+
+function tileClickEvent() {
+  console.log("hi");
 }
 
 
