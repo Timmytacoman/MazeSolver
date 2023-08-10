@@ -95,6 +95,8 @@ async function bfs(tiles, start) {
             console.log("see above");
             displayTile = document.getElementById(value);
             displayTile.style.backgroundColor = "white";
+            displayTile.style.transition = ".75s";
+            
           } else {
             console.log("at a wall");
           }
@@ -134,8 +136,10 @@ async function determineSolutionPath(dct, end) {
     console.log(val);
     let element = document.getElementById(val);
     console.log(element);
+    element.style.transition = ".5s";
     element.style.backgroundColor = "rgb(107, 226, 133)";
-    await new Promise((resolve) => setTimeout(resolve, 30));
+
+    await new Promise((resolve) => setTimeout(resolve, 20));
 
 
   }
