@@ -1,0 +1,4 @@
+- add memory of previous grid state
+- cleanup code
+- cleanup appearance
+- start work on more algorithms
