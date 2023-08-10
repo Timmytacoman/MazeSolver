@@ -1,26 +1,35 @@
-// 0: draw, 1: erase
+// 0: draw
+// 1: erase
+// 2: start
+// 3: end
 let drawType = 0;
 // width and height of grid
-let n = 10;
-let m = 10;
+let m = 20;
+let n = 30;
+
+let startRow = 4;
+let startCol = 6;
+let endRow = 13;
+let endCol = 20;
 
 // construct grid
 let tiles = Array();
-for (let i = 0; i < n; i++) {
-  let row = Array.from("0".repeat(m));
+for (let i = 0; i < m; i++) {
+  let row = Array(n).fill(0);
   tiles.push(row);
 }
-console.log(tiles);
-console.log("initial ^");
+
+// console.log(tiles);
+// console.log("initial ^");
 
 function tableCreate() {
   const body = document.body;
   const tbl = document.createElement("table");
   tbl.id = "grid";
 
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i < m; i++) {
     const tr = tbl.insertRow();
-    for (let j = 0; j < m; j++) {
+    for (let j = 0; j < n; j++) {
       const td = tr.insertCell();
       td.id = i + "," + j;
       td.addEventListener("mouseover", tileEnterEvent);
@@ -32,8 +41,13 @@ function tableCreate() {
 
 function handleCell(event) {
   // scrape location data
-  row = event.srcElement.id[0];
-  col = event.srcElement.id[2];
+  // row = event.srcElement.id[0];
+  let entire = event.srcElement.id;
+  const splitted = entire.split(",");
+  // console.log(splitted);
+  let row = splitted[0];
+  let col = splitted[1];
+  // col = event.srcElement.id[2];
   // console.log(row, col);
 
   // pencil
@@ -41,14 +55,14 @@ function handleCell(event) {
     // change color
     event.srcElement.style.backgroundColor = "black";
     // update grid value to wall
-    tiles[row][col] = "1";
+    tiles[row][col] = 1;
 
     // eraser
   } else if (drawType == 1) {
     // change color
     event.srcElement.style.backgroundColor = "#96d4d4";
     // update grid value to non wall
-    tiles[row][col] = "0";
+    tiles[row][col] = 0;
   }
 }
 
@@ -91,18 +105,39 @@ function registerListeners() {
   eraser.addEventListener("click", selectEraser);
   // register solve buttons
   const solve = document.getElementById("solve");
-  solve.addEventListener("click", getGridArray);
+  solve.addEventListener("click", breadthFirstSearch);
 }
 
-function getGridArray() {
-  // grid is <table id="grid">
-  console.log(document.getElementById("grid"));
-  console.log(tiles);
+// function getGridArray() {
+//   // grid is <table id="grid">
+//   // console.log(document.getElementById("grid"));
+//   // console.log(tiles);
+//   breadthFirstSearch();
+// }
+
+function breadthFirstSearch() {
+  // imported from breadth-first-search.js
+  bfs(tiles, start);
 }
 
 tableCreate();
 registerListeners();
 
+// temp insert start and end positions
+// 2 -> start
+// 3-> end
+
+
+
+tiles[startRow][startCol] = 2;
+tiles[endRow][endCol] = 3;
+let start = document.getElementById(startRow + "," + startCol);
+start.style.backgroundColor = "rgb(255, 255, 0)";
+
+let end = document.getElementById(endRow + "," + endCol);
+end.style.backgroundColor = "rgb(255, 111, 0)";
+
 // let test = document.getElementById("0,0");
 // console.log(test.isWall);
 // console.log(document.getElementById("grid"));
+
