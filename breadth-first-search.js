@@ -23,7 +23,7 @@ async function bfs(tiles, start) {
 
   // while the queue is not empty
   while (queue.length != 0) {
-    await new Promise((resolve) => setTimeout(resolve, 40));
+    await new Promise((resolve) => setTimeout(resolve, 1));
 
     console.log("here");
     console.log(queue);
@@ -135,7 +135,7 @@ async function determineSolutionPath(dct, end) {
     let element = document.getElementById(val);
     console.log(element);
     element.style.backgroundColor = "rgb(107, 226, 133)";
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    await new Promise((resolve) => setTimeout(resolve, 30));
 
 
   }

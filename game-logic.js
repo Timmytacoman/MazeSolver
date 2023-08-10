@@ -4,13 +4,13 @@
 // 3: end
 let drawType = 0;
 // width and height of grid
-let m = 5;
-let n = 5;
+let m = 20;
+let n = 30;
 
-let startRow = 0;
-let startCol = 0;
-let endRow = 0;
-let endCol = 4;
+let startRow = 4;
+let startCol = 6;
+let endRow = 13;
+let endCol = 20;
 
 // construct grid
 let tiles = Array();
