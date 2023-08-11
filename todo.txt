@@ -1,0 +1,5 @@
+- refactor data structure to use 2d array and update that
+- add memory of previous grid state
+- cleanup code
+- cleanup appearance
+- start work on more algorithms
