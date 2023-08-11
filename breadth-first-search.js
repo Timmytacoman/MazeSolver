@@ -96,7 +96,6 @@ async function bfs(tiles, start) {
             displayTile = document.getElementById(value);
             displayTile.style.backgroundColor = "white";
             displayTile.style.transition = ".75s";
-            
           } else {
             console.log("at a wall");
           }
@@ -121,7 +120,7 @@ async function determineSolutionPath(dct, end) {
 
   let key = end;
 
-  while(dct[key] != null) {
+  while (dct[key] != null) {
     path.push(dct[key]);
     key = dct[key];
   }
@@ -131,7 +130,7 @@ async function determineSolutionPath(dct, end) {
   console.log(path);
 
   // draw solution path
-  for(let i = 0; i < path.length; i++) {
+  for (let i = 0; i < path.length; i++) {
     let val = path[i];
     console.log(val);
     let element = document.getElementById(val);
@@ -140,9 +139,5 @@ async function determineSolutionPath(dct, end) {
     element.style.backgroundColor = "rgb(107, 226, 133)";
 
     await new Promise((resolve) => setTimeout(resolve, 20));
-
-
   }
-
-
 }

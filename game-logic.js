@@ -9,8 +9,13 @@ let n = 30;
 
 let startRow = 4;
 let startCol = 6;
-let endRow = 13;
-let endCol = 20;
+let endRow = 4;
+let endCol = 10;
+
+let backgroundColor = "#96d4d4";
+let pathColor = "white";
+let startColor = "rgb(255, 255, 0)";
+let endColor = "rgb(255, 111, 0)";
 
 // construct grid
 let tiles = Array();
@@ -39,9 +44,30 @@ function tableCreate() {
   body.appendChild(tbl);
 }
 
+function clearBoard() {
+  console.log("here");
+  // reset all non (black or default) to default
+  console.log(grid);
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      let element = document.getElementById(i + "," + j);
+      let color = element.style.backgroundColor;
+      console.log(color);
+      if ((color != "black") && (color != startColor) && (color != endColor)) {
+        element.style.transition = "0s";
+        element.style.backgroundColor = backgroundColor;
+      }
+    }
+  }
+}
+
 function handleCell(event) {
   // scrape location data
   // row = event.srcElement.id[0];
+
+  // clear rest of board if necessary
+  clearBoard();
+
   let entire = event.srcElement.id;
   const splitted = entire.split(",");
   // console.log(splitted);
@@ -112,7 +138,6 @@ function registerListeners() {
   reset.addEventListener("click", selectReset);
 }
 
-
 function selectReset() {
   console.log(tiles);
 }
@@ -136,8 +161,6 @@ registerListeners();
 // 2 -> start
 // 3-> end
 
-
-
 tiles[startRow][startCol] = 2;
 tiles[endRow][endCol] = 3;
 let start = document.getElementById(startRow + "," + startCol);
@@ -149,4 +172,3 @@ end.style.backgroundColor = "rgb(255, 111, 0)";
 // let test = document.getElementById("0,0");
 // console.log(test.isWall);
 // console.log(document.getElementById("grid"));
-
