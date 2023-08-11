@@ -106,6 +106,15 @@ function registerListeners() {
   // register solve buttons
   const solve = document.getElementById("solve");
   solve.addEventListener("click", breadthFirstSearch);
+  // reset button
+  const reset = document.getElementById("reset-button");
+  console.log(reset);
+  reset.addEventListener("click", selectReset);
+}
+
+
+function selectReset() {
+  console.log(tiles);
 }
 
 // function getGridArray() {
