@@ -1,6 +1,7 @@
 // class to hold tile data
 class Tile {
     color = backgroundColor;
+    isWall = false;
 
     constructor(row, col) {
         this.row = row;
@@ -33,17 +34,31 @@ function initTiles(m, n) {
 function drawGrid(tiles) {
     // capture the board
     let board = document.getElementById("board");
+
+    // delete previous table src: https://stackoverflow.com/questions/2688602/delete-the-entire-table-rendered-from-different-pages-using-javascript
+    var tbl = document.getElementById("table");
+    if (tbl) {
+        tbl.parentNode.removeChild(tbl);
+    }
+
     // create the table element
     let table = document.createElement("table");
+    table.id = "table";
 
+    // iterate through tiles object
     for (let i = 0; i < tiles.length; i++) {
         // create the row for the table
         let tableRow = table.insertRow();
         for (let j = 0; j < tiles[0].length; j++) {
             // caputre the corresponding tile object
-            tileObject = tiles[i][j]
+            tileObject = tiles[i][j];
+            
             // create the table cell
             let tableCell = tableRow.insertCell();
+
+            // add cell listener
+            tableCell.addEventListener("click", cellClickEvent);
+
             // set the cell's attributes
             let cellStyle = tableCell.style;
             // set background color
@@ -53,10 +68,25 @@ function drawGrid(tiles) {
 
     // add the table to the board
     board.appendChild(table);
+}
 
-    for (let i = 0; i < tiles.length; i++) {}
+function cellClickEvent(event) {
+    let row = event.target.parentNode.rowIndex;
+    let col = event.target.cellIndex;
+    // find corresponding tile object
+    let tileObject = tiles[row][col];
+    // change the wall status
+    tileObject.isWall = !tileObject.isWall;
+    // change to appropriate color
+    if (tileObject.isWall) {
+        tileObject.color = wallColor;
+    } else {
+        tileObject.color = backgroundColor;
+    }
+
+    // redraw the grid
+    drawGrid(tiles);
 }
 
 let tiles = initTiles(10, 10);
-// console.log(tiles);
 drawGrid(tiles);

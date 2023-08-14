@@ -1,29 +1,9 @@
-/* td {
-  border: 10px solid rgb(0, 0, 0);
-} */
-
-.draw-options button {
-  width: 75;
-  height: 25px;
-  border-radius: 100px;
-  font-size: 14px;
-}
-
-#pencil {
-  background-color: rgb(107, 226, 133);
-}
-
-#eraser {
-  background-color: rgb(211, 97, 77);
-}
-
 body {
-  background-color: darkgray;
+    background-color: darkgray;
 }
 
 td {
-  /* border: 1px solid black; */
-  width: 25px;
-  height: 25px;
-  background-color: #96d4d4;
+    /* border: 1px solid black; */
+    width: 25px;
+    height: 25px;
 }
