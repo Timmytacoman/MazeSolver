@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
 
-    <title>Document</title>
-  </head>
+        <title>Document</title>
+    </head>
 
-  <body ondragstart="return false;" ondrop="return false;">
-    <div class="draw-options">
-      <button id="pencil">Pencil</button>
-      <button id="eraser">Eraser</button>
-    </div>
-    <div class="solve-buttons">
-      <button id="solve">Solve</button>
-    </div>
-    <div class="reset-button">
-      <button id="reset-button">Reset</button>
-    </div>
-  </body>
+    <body ondragstart="return false;" ondrop="return false;">
+        <div id="create-board-button">
+            <button>draw</button>
+        </div>
 
-  <script src="breadth-first-search.js"></script>
-  <script src="game-logic.js"></script>
+        <div id="board">board</div>
+    </body>
 
+    <script src="properties.js"></script>
+    <script src="interface.js"></script>
 </html>
