@@ -14,3 +14,10 @@ let endCol = 19;
 let endColor = "green";
 
 
+let movingStart = false;
+let prevStartRow = startRow;
+let prevStartCol = startCol;
+
+let movingEnd = false;
+let prevEndRow = endRow;
+let prevEndCol = endCol;

@@ -68,8 +68,8 @@ function drawGrid(tiles) {
             let tableCell = tableRow.insertCell();
 
             // add cell listener
-            tableCell.addEventListener("mouseleave", cellClickEvent);
-            tableCell.addEventListener("click", cellClickEvent);
+            tableCell.addEventListener("mouseleave", handleCellClickEvent);
+            tableCell.addEventListener("click", handleCellClickEvent);
 
             // set the cell's attributes
             let cellStyle = tableCell.style;
@@ -82,7 +82,7 @@ function drawGrid(tiles) {
     board.appendChild(table);
 }
 
-function cellClickEvent(event) {
+function handleCellClickEvent(event) {
     // check if left click is being used
     if (event.type == "mouseleave") {
         if (event.buttons != 1) {
@@ -94,6 +94,25 @@ function cellClickEvent(event) {
     let col = event.target.cellIndex;
     // find corresponding tile object
     let tileObject = tiles[row][col];
+
+    // check if we start clicking on a target cell
+    console.log(tileObject);
+    if (tileObject.isStart) {
+        movingStart = true;
+        return;
+    }
+
+    if (tileObject.isTarget) {
+        movingEnd = true;
+        return;
+    }
+
+    // check if we are dragging endpoints
+    let changed = checkEndPoints(tileObject, row, col);
+    if (changed) {
+        return;
+    }
+
     // change the wall status
     tileObject.isWall = !tileObject.isWall;
     // change to appropriate color
@@ -107,7 +126,63 @@ function cellClickEvent(event) {
     drawGrid(tiles);
 }
 
+function checkEndPoints(tileObject, row, col) {
+    // if we are dragging with the start
+    if (movingStart) {
+        // reset the previous location
+        let previousStart = tiles[prevStartRow][prevStartCol];
+        previousStart.isStart = false;
+        previousStart.color = backgroundColor;
+        previousStart.isWall = false;
+
+        // make this location the new start
+        tileObject.isStart = true;
+        tileObject.color = startColor;
+
+        // update previous location
+        prevStartRow = row;
+        prevStartCol = col;
+
+        // redraw the grid
+        drawGrid(tiles);
+        console.log(tiles);
+        return true;
+    }
+
+    // if we are dragging the end
+    if (movingEnd) {
+        // reset the previous location
+        let previousEnd = tiles[prevEndRow][prevEndCol];
+        previousEnd.isTarget = false;
+        previousEnd.color = backgroundColor;
+        previousEnd.isWall = false;
+
+        // make this location the new target
+        tileObject.isTarget = true;
+        tileObject.color = endColor;
+
+        // update previous location
+        prevEndRow = row;
+        prevEndCol = col;
+
+        // redraw the grid
+        drawGrid(tiles);
+        console.log(tiles);
+        return true;
+    }
+    return false;
+}
+
+function resetMoving() {
+    movingStart = false;
+    movingEnd = false;
+}
+
+function registerListeners() {
+    document.addEventListener("mouseup", resetMoving);
+}
+
 let tiles = initTiles(m, n);
 drawGrid(tiles);
-
 console.log(tiles);
+registerListeners();
