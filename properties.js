@@ -1,1 +1,1 @@
-backgroundColor = "white";
+backgroundColor = "lightblue";

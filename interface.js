@@ -37,14 +37,21 @@ function drawGrid(tiles) {
     let table = document.createElement("table");
 
     for (let i = 0; i < tiles.length; i++) {
+        // create the row for the table
         let tableRow = table.insertRow();
-        for(let j = 0; j < tiles[0].length; j++) {
-            // console.log(tiles[i][j]);
+        for (let j = 0; j < tiles[0].length; j++) {
+            // caputre the corresponding tile object
+            tileObject = tiles[i][j]
+            // create the table cell
             let tableCell = tableRow.insertCell();
-
+            // set the cell's attributes
+            let cellStyle = tableCell.style;
+            // set background color
+            cellStyle.backgroundColor = tileObject.color;
         }
     }
 
+    // add the table to the board
     board.appendChild(table);
 
     for (let i = 0; i < tiles.length; i++) {}
