@@ -52,11 +52,12 @@ function drawGrid(tiles) {
         for (let j = 0; j < tiles[0].length; j++) {
             // caputre the corresponding tile object
             tileObject = tiles[i][j];
-            
+
             // create the table cell
             let tableCell = tableRow.insertCell();
 
             // add cell listener
+            tableCell.addEventListener("mouseleave", cellClickEvent);
             tableCell.addEventListener("click", cellClickEvent);
 
             // set the cell's attributes
@@ -71,6 +72,17 @@ function drawGrid(tiles) {
 }
 
 function cellClickEvent(event) {
+    // check if left click is being used
+    console.log(event.buttons);
+    console.log(event);
+
+    if (event.type == "mouseleave") {
+        if (event.buttons != 1) {
+            return;
+        }
+    }
+
+
     let row = event.target.parentNode.rowIndex;
     let col = event.target.cellIndex;
     // find corresponding tile object
@@ -88,5 +100,5 @@ function cellClickEvent(event) {
     drawGrid(tiles);
 }
 
-let tiles = initTiles(10, 10);
+let tiles = initTiles(m, n);
 drawGrid(tiles);
