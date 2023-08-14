@@ -1,3 +1,5 @@
+"use strict";
+
 // class to hold tile data
 class Tile {
     color = backgroundColor;
@@ -62,7 +64,7 @@ function drawGrid(tiles) {
         let tableRow = table.insertRow();
         for (let j = 0; j < tiles[0].length; j++) {
             // caputre the corresponding tile object
-            tileObject = tiles[i][j];
+            let tileObject = tiles[i][j];
 
             // create the table cell
             let tableCell = tableRow.insertCell();
@@ -173,11 +175,13 @@ function checkEndPoints(tileObject, row, col) {
     return false;
 }
 
+// reset the vars when we are moving the endpoints
 function resetMoving() {
     movingStart = false;
     movingEnd = false;
 }
 
+// register events for the entire doc
 function registerListeners() {
     document.addEventListener("mouseup", resetMoving);
 }
@@ -186,3 +190,4 @@ let tiles = initTiles(m, n);
 drawGrid(tiles);
 console.log(tiles);
 registerListeners();
+
