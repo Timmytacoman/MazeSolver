@@ -2,6 +2,8 @@
 class Tile {
     color = backgroundColor;
     isWall = false;
+    isStart = false;
+    isTarget = false;
 
     constructor(row, col) {
         this.row = row;
@@ -23,6 +25,15 @@ function initTiles(m, n) {
         for (let j = 0; j < n; j++) {
             // create tile obj
             let tile = new Tile(i, j);
+            // check if the tile is the start or end
+            if (i == startRow && j == startCol) {
+                tile.isStart = true;
+                tile.color = startColor;
+            }
+            if (i == endRow && j == endCol) {
+                tile.isTarget = true;
+                tile.color = endColor;
+            }
             row.push(tile);
         }
         tiles.push(row);
@@ -73,15 +84,11 @@ function drawGrid(tiles) {
 
 function cellClickEvent(event) {
     // check if left click is being used
-    console.log(event.buttons);
-    console.log(event);
-
     if (event.type == "mouseleave") {
         if (event.buttons != 1) {
             return;
         }
     }
-
 
     let row = event.target.parentNode.rowIndex;
     let col = event.target.cellIndex;
@@ -102,3 +109,5 @@ function cellClickEvent(event) {
 
 let tiles = initTiles(m, n);
 drawGrid(tiles);
+
+console.log(tiles);
