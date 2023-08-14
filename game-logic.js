@@ -44,6 +44,32 @@ function tableCreate() {
   body.appendChild(tbl);
 }
 
+function resetAll() {
+  // console.log("here");
+  // reset all colors to default
+  // console.log(grid);
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      let element = document.getElementById(i + "," + j);
+      let color = element.style.backgroundColor;
+      console.log(color);
+      if (color != startColor && color != endColor) {
+        element.style.transition = "0s";
+        element.style.backgroundColor = backgroundColor;
+      }
+    }
+  }
+  // reset all walls to empty
+  console.log(tiles);
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (tiles[i][j] == 1) {
+        tiles[i][j] = 0;
+      }
+    }
+  }
+}
+
 function clearBoard() {
   console.log("here");
   // reset all non (black or default) to default
@@ -53,7 +79,7 @@ function clearBoard() {
       let element = document.getElementById(i + "," + j);
       let color = element.style.backgroundColor;
       console.log(color);
-      if ((color != "black") && (color != startColor) && (color != endColor)) {
+      if (color != "black" && color != startColor && color != endColor) {
         element.style.transition = "0s";
         element.style.backgroundColor = backgroundColor;
       }
@@ -135,11 +161,7 @@ function registerListeners() {
   // reset button
   const reset = document.getElementById("reset-button");
   console.log(reset);
-  reset.addEventListener("click", selectReset);
-}
-
-function selectReset() {
-  console.log(tiles);
+  reset.addEventListener("click", resetAll);
 }
 
 // function getGridArray() {
