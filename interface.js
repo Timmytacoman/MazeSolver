@@ -11,6 +11,13 @@ class Tile {
         this.row = row;
         this.col = col;
     }
+
+
+    // method to provide dictionary mappings for algorithm solving since key must be a string in javascript
+    // source: https://stackoverflow.com/questions/6307514/is-it-possible-to-override-javascripts-tostring-function-to-provide-meaningfu
+    toString() {
+        return this.row + "," + this.col;
+    }
 }
 
 // function to create the tile objects and store them in an array
@@ -186,17 +193,14 @@ function registerListeners() {
     // register reset moving from mouseup
     document.addEventListener("mouseup", resetMoving);
     // register solve board button
-    document.getElementById("solve-board-button").addEventListener("click", solveBFS);
+    let button = document.getElementById("solve-board-button");
+    button.addEventListener("click", breadthFirstSearch);
 }
-
 
 /* Solving functions
-*
-*/
+ *
+ */
 
-function solveBFS() {
-    breadthFirstSearch();
-}
 
 
 // global scope to init tiles
@@ -204,5 +208,4 @@ let tiles = initTiles(m, n);
 drawGrid(tiles);
 registerListeners();
 
-solveBFS();
-
+breadthFirstSearch();
