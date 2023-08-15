@@ -1,3 +1,11 @@
 - when we click a tile, we just have to update the tile object and call drawGrid
 
 - if we started clicking on the start box, we need to update the current box with the start
+
+- implement bfs
+
+- color exploring path
+
+- color solution path
+
+- redraw grid before pressing solve again

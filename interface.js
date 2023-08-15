@@ -1,3 +1,5 @@
+"use strict";
+
 // class to hold tile data
 class Tile {
     color = backgroundColor;
@@ -8,6 +10,12 @@ class Tile {
     constructor(row, col) {
         this.row = row;
         this.col = col;
+    }
+
+    // method to provide dictionary mappings for algorithm solving since key must be a string in javascript
+    // source: https://stackoverflow.com/questions/6307514/is-it-possible-to-override-javascripts-tostring-function-to-provide-meaningfu
+    toString() {
+        return this.row + "," + this.col;
     }
 }
 
@@ -62,7 +70,7 @@ function drawGrid(tiles) {
         let tableRow = table.insertRow();
         for (let j = 0; j < tiles[0].length; j++) {
             // caputre the corresponding tile object
-            tileObject = tiles[i][j];
+            let tileObject = tiles[i][j];
 
             // create the table cell
             let tableCell = tableRow.insertCell();
@@ -127,6 +135,8 @@ function handleCellClickEvent(event) {
 }
 
 function checkEndPoints(tileObject, row, col) {
+    // clear board solution if present
+    resetBoardSolution(tiles);
     // if we are dragging with the start
     if (movingStart) {
         // reset the previous location
@@ -173,16 +183,26 @@ function checkEndPoints(tileObject, row, col) {
     return false;
 }
 
+// reset the vars when we are moving the endpoints
 function resetMoving() {
     movingStart = false;
     movingEnd = false;
 }
 
+// register events
 function registerListeners() {
+    // register reset moving from mouseup
     document.addEventListener("mouseup", resetMoving);
+    // register solve board button
+    let button = document.getElementById("solve-board-button");
+    button.addEventListener("click", breadthFirstSearch);
 }
 
+/* Solving functions
+ *
+ */
+
+// global scope to init tiles
 let tiles = initTiles(m, n);
 drawGrid(tiles);
-console.log(tiles);
 registerListeners();
