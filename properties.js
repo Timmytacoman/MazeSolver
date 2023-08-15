@@ -6,6 +6,8 @@ let n = 20;
 let backgroundColor = "lightblue";
 let wallColor = "black";
 
+let exploreColor = "white";
+
 let startRow = m / 2;
 let startCol = n / 2 - m / 4;
 let startColor = "orange";

@@ -4,3 +4,7 @@
 
 - implement bfs
 
+- color exploring path
+
+- color solution path
+

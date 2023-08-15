@@ -28,8 +28,8 @@ function getNeighbors(node) {
     let col = node.col;
     let possible = [
         [row - 1, col],
-        [row + 1, col],
         [row, col + 1],
+        [row + 1, col],
         [row, col - 1],
     ];
     let neighbors = [];
@@ -50,14 +50,13 @@ function traceSolution(dct, end) {
     console.log(dct);
     let solution = [];
     let current = end;
-    while(current != null) {
+    while (current != null) {
         solution.push(current);
         current = dct[current];
     }
     // trim and reverse
     solution = solution.slice(0, -1).reverse();
     console.log(solution);
-
 }
 
 /*
@@ -75,7 +74,7 @@ While queue:
     - add mapping to previous node
 */
 
-function breadthFirstSearch() {
+async function breadthFirstSearch() {
     // find endpoints
     let start = getStart();
     let end = getEnd();
@@ -102,42 +101,48 @@ function breadthFirstSearch() {
         console.log("popped");
         console.log(popped);
 
-        // check if we popped the solution
-        if (popped == end) {
-            console.log("found it");
-            console.log(dct);
-            // trace solution
-            traceSolution(dct, end);
-            return;
-        }
-
         // collect the neighbors
         let neighbors = getNeighbors(popped);
 
         // validate the neighbors
         for (let i = 0; i < neighbors.length; i++) {
-            let n = neighbors[i];
+            var neighbor = neighbors[i];
 
-            console.log("n");
-            console.log(n);
+            console.log("neighbor");
+            console.log(neighbor);
+
+            // check if we found the solution
+            if (neighbor == end) {
+                console.log("found it");
+                console.log(dct);
+                // trace solution
+                traceSolution(dct, end);
+                return;
+            }
 
             // check that neighbor is not visited
-            if (visited.has(n)) {
+            if (visited.has(neighbor)) {
                 console.log("already visited");
-                break;
+                continue;
             }
 
             // at this point, the node is good for exploring
 
             // add to queue
-            queue.push(n);
+            queue.push(neighbor);
 
             // add to visited
-            visited.add(n);
+            visited.add(neighbor);
 
             // create dictionary mapping here
             // needed to write toString method in tile class for this to work src: https://stackoverflow.com/questions/6307514/is-it-possible-to-override-javascripts-tostring-function-to-provide-meaningfu
-            dct[n.toString()] = popped.toString();
+            dct[neighbor.toString()] = popped.toString();
+
+            // update color in class to exploring
+            neighbor.color = exploreColor;
+            drawGrid(tiles);
+            // add delay for animation
+            await new Promise((resolve) => setTimeout(resolve, 1000));
         }
     }
 }

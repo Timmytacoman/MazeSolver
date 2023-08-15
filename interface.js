@@ -207,5 +207,3 @@ function registerListeners() {
 let tiles = initTiles(m, n);
 drawGrid(tiles);
 registerListeners();
-
-breadthFirstSearch();
