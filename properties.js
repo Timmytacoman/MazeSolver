@@ -1,7 +1,7 @@
 "use strict";
 
-let m = 30;
-let n = 50;
+let m = 20;
+let n = 20;
 
 let backgroundColor = "lightblue";
 let wallColor = "black";
@@ -18,7 +18,7 @@ let endCol = Math.floor(n / 2 + m / 4);
 let endColor = "green";
 
 let bfsDelaySearchTime = 1;
-let bfsDelaySolutionTime = 100;
+let bfsDelaySolutionTime = 1;
 
 let movingStart = false;
 let prevStartRow = startRow;

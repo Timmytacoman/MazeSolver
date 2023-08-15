@@ -191,6 +191,13 @@ function resetMoving() {
 
 // register events
 function registerListeners() {
+    // remove screen dragging 
+    document.getElementById("body-screen").ondragstart = function () {
+        return false;
+    };
+    document.getElementById("body-screen").ondrop = function () {
+        return false;
+    };
     // register reset moving from mouseup
     document.addEventListener("mouseup", resetMoving);
     // register solve board button
@@ -206,4 +213,3 @@ function registerListeners() {
 let tiles = initTiles(m, n);
 drawGrid(tiles);
 registerListeners();
-
