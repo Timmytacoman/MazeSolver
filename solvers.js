@@ -27,10 +27,10 @@ function getNeighbors(node) {
     let row = node.row;
     let col = node.col;
     let possible = [
-        [row - 1, col],
-        [row, col + 1],
-        [row + 1, col],
         [row, col - 1],
+        [row, col + 1],
+        [row - 1, col],
+        [row + 1, col],
     ];
     let neighbors = [];
     for (let i = 0; i < possible.length; i++) {
@@ -72,7 +72,7 @@ async function animateSolution(tiles, trace) {
         let tile = tiles[row][col];
         tile.color = solutionPathColor;
         // add delay for animation
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, bfsDelaySolutionTime));
         drawGrid(tiles);
     }
 }
@@ -188,7 +188,7 @@ async function breadthFirstSearch() {
             neighbor.color = exploreColor;
             drawGrid(tiles);
             // add delay for animation
-            await new Promise((resolve) => setTimeout(resolve, 1));
+            await new Promise((resolve) => setTimeout(resolve, bfsDelaySearchTime));
         }
     }
 }
