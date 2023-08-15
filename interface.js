@@ -181,13 +181,28 @@ function resetMoving() {
     movingEnd = false;
 }
 
-// register events for the entire doc
+// register events
 function registerListeners() {
+    // register reset moving from mouseup
     document.addEventListener("mouseup", resetMoving);
+    // register solve board button
+    document.getElementById("solve-board-button").addEventListener("click", solveBFS);
 }
 
+
+/* Solving functions
+*
+*/
+
+function solveBFS() {
+    breadthFirstSearch();
+}
+
+
+// global scope to init tiles
 let tiles = initTiles(m, n);
 drawGrid(tiles);
-console.log(tiles);
 registerListeners();
+
+solveBFS();
 
