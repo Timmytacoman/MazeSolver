@@ -17,7 +17,7 @@ let endRow = Math.floor(m / 2);
 let endCol = Math.floor(n / 2 + m / 4);
 let endColor = "green";
 
-let bfsDelaySearchTime = 1000;
+let bfsDelaySearchTime = 1;
 let bfsDelaySolutionTime = 100;
 
 let movingStart = false;

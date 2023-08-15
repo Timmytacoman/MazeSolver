@@ -27,10 +27,10 @@ function getNeighbors(node) {
     let row = node.row;
     let col = node.col;
     let possible = [
-        [row, col - 1],
-        [row, col + 1],
         [row - 1, col],
+        [row, col + 1],
         [row + 1, col],
+        [row, col - 1],
     ];
     let neighbors = [];
     for (let i = 0; i < possible.length; i++) {
