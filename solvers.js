@@ -77,6 +77,22 @@ async function animateSolution(tiles, trace) {
     }
 }
 
+function resetBoardSolution(tiles) {
+    // we need to reset any non wall tile unless it is an endpoint
+    for(let i = 0; i < m; i++) {
+        for(let j = 0; j < n; j++) {
+            let tile = tiles[i][j];
+            if (tile.isStart || tile.isTarget) {
+                continue;
+            }
+            if (!tile.isWall) {
+                tile.color = backgroundColor;
+            }
+        }
+    } 
+
+}
+
 /*
 Start queue
 Start visited
@@ -93,6 +109,9 @@ While queue:
 */
 
 async function breadthFirstSearch() {
+    // clear board solution if present
+    resetBoardSolution(tiles);
+    
     // find endpoints
     let start = getStart();
     let end = getEnd();

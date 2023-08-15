@@ -8,3 +8,4 @@
 
 - color solution path
 
+- redraw grid before pressing solve again

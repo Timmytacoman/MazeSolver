@@ -12,7 +12,6 @@ class Tile {
         this.col = col;
     }
 
-
     // method to provide dictionary mappings for algorithm solving since key must be a string in javascript
     // source: https://stackoverflow.com/questions/6307514/is-it-possible-to-override-javascripts-tostring-function-to-provide-meaningfu
     toString() {
@@ -136,6 +135,8 @@ function handleCellClickEvent(event) {
 }
 
 function checkEndPoints(tileObject, row, col) {
+    // clear board solution if present
+    resetBoardSolution(tiles);
     // if we are dragging with the start
     if (movingStart) {
         // reset the previous location
@@ -200,8 +201,6 @@ function registerListeners() {
 /* Solving functions
  *
  */
-
-
 
 // global scope to init tiles
 let tiles = initTiles(m, n);
