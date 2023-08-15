@@ -7,6 +7,7 @@ let backgroundColor = "lightblue";
 let wallColor = "black";
 
 let exploreColor = "white";
+let solutionPathColor = "lightgreen";
 
 let startRow = m / 2;
 let startCol = n / 2 - m / 4;

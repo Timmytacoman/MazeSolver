@@ -50,13 +50,31 @@ function traceSolution(dct, end) {
     console.log(dct);
     let solution = [];
     let current = end;
+    console.log(current);
     while (current != null) {
         solution.push(current);
         current = dct[current];
     }
     // trim and reverse
-    solution = solution.slice(0, -1).reverse();
-    console.log(solution);
+    solution = solution.slice(1, -1).reverse();
+    return solution;
+}
+
+// function to animate the solution path
+async function animateSolution(tiles, trace) {
+    console.log(trace);
+    for (let i = 0; i < trace.length; i++) {
+        // update tile color
+        console.log(trace[i]);
+        let splitted = trace[i].split(",");
+        let row = splitted[0];
+        let col = splitted[1];
+        let tile = tiles[row][col];
+        tile.color = solutionPathColor;
+        // add delay for animation
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        drawGrid(tiles);
+    }
 }
 
 /*
@@ -114,15 +132,24 @@ async function breadthFirstSearch() {
             // check if we found the solution
             if (neighbor == end) {
                 console.log("found it");
-                console.log(dct);
+                // add last node
+                dct[neighbor.toString()] = popped.toString();
+
                 // trace solution
-                traceSolution(dct, end);
+                let trace = traceSolution(dct, end.toString());
+                // animate solution
+                animateSolution(tiles, trace);
                 return;
             }
 
             // check that neighbor is not visited
             if (visited.has(neighbor)) {
                 console.log("already visited");
+                continue;
+            }
+
+            // check if we hit a wall
+            if (neighbor.isWall) {
                 continue;
             }
 
@@ -142,7 +169,7 @@ async function breadthFirstSearch() {
             neighbor.color = exploreColor;
             drawGrid(tiles);
             // add delay for animation
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await new Promise((resolve) => setTimeout(resolve, 1));
         }
     }
 }
