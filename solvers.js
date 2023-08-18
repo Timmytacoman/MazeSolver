@@ -72,7 +72,7 @@ async function animateSolution(tiles, trace) {
         let tile = tiles[row][col];
         tile.color = solutionPathColor;
         // add delay for animation
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, bfsDelaySolutionTime));
         drawGrid(tiles);
     }
 }
@@ -188,7 +188,7 @@ async function breadthFirstSearch() {
             neighbor.color = exploreColor;
             drawGrid(tiles);
             // add delay for animation
-            await new Promise((resolve) => setTimeout(resolve, 1));
+            await new Promise((resolve) => setTimeout(resolve, bfsDelaySearchTime));
         }
     }
 }

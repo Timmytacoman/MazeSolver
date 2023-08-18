@@ -55,14 +55,14 @@ function drawGrid(tiles) {
     let board = document.getElementById("board");
 
     // delete previous table src: https://stackoverflow.com/questions/2688602/delete-the-entire-table-rendered-from-different-pages-using-javascript
-    var tbl = document.getElementById("table");
+    var tbl = document.getElementById("grid-table");
     if (tbl) {
         tbl.parentNode.removeChild(tbl);
     }
 
     // create the table element
     let table = document.createElement("table");
-    table.id = "table";
+    table.id = "grid-table";
 
     // iterate through tiles object
     for (let i = 0; i < tiles.length; i++) {
@@ -191,6 +191,13 @@ function resetMoving() {
 
 // register events
 function registerListeners() {
+    // remove screen dragging 
+    document.getElementById("body-screen").ondragstart = function () {
+        return false;
+    };
+    document.getElementById("body-screen").ondrop = function () {
+        return false;
+    };
     // register reset moving from mouseup
     document.addEventListener("mouseup", resetMoving);
     // register solve board button

@@ -1,10 +1,27 @@
-body {
+html {
     background-color: darkgray;
 }
 
+body {
+  margin: 0px;
+}
+
 td {
-    /* border: 1px solid black; */
     width: 25px;
     height: 25px;
 }
 
+
+#solve-board-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#solve-board-button:hover {
+  background-color: #2980b9;
+}
